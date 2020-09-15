@@ -1,24 +1,92 @@
-let myLibrary = [];
+const books = [];
 
-function Book(title, num_pages, author) {
+const formButton = document.getElementById('form_submit_button');
+const bookTitle = document.getElementById('book_title');
+const bookStatus = document.querySelector("input[name='status']:checked");
+const bookAuthor = document.getElementById('book_author');
+const bookPages = document.getElementById('book_pages');
+const booksContainer = document.getElementById('books_container');
+
+function Book(title, status, author, numPages) {
   // the constructor...
   this.title = title;
-  this.num_pages = num_pages;
+  this.status = status;
   this.author = author;
+  this.pages = numPages;
 }
 
-function addBookToLibrary(book) {
-  // do stuff here
-  // take user input
-  myLibrary.push(book)
+function addBookToLibrary({ title, status, author, pages }) {
+  const book = new Book(title, status, author, pages);
+  books.push(book);
 }
 
-function eachBook(library) {
-	// for(let book in library) {
-	// 	
-	// }
+formButton.addEventListener('click', (e) => {
+  e.preventDefault();
+
+  addBookToLibrary({
+    title: bookTitle.value,
+    status: bookStatus.value,
+    author: bookAuthor.value,
+    pages: bookPages.value,
+  });
+
+  bookTitle.value = '';
+  bookAuthor.value = '';
+  bookPages.value = '';
+});
+
+function render() {
+  books.forEach((el) => {
+    const bookContainer = document.createElement('div');
+    const title = document.createElement('div');
+    const author = document.createElement('div');
+    const status = document.createElement('div');
+    const pages = document.createElement('div');
+
+    bookContainer.className = 'book_container';
+    title.className = 'title';
+    author.className = 'author';
+    status.className = 'status';
+    pages.className = 'pages';
+
+    title.textContent = el.title;
+    bookContainer.appendChild(title);
+    author.textContent = el.author;
+    bookContainer.appendChild(author);
+    status.textContent = el.status;
+    bookContainer.appendChild(status);
+    pages.textContent = el.pages;
+    bookContainer.appendChild(pages);
+    booksContainer.appendChild(bookContainer);
+  });
 }
 
-let bookOne = new Book("things fall apart", 4, "james");
+addBookToLibrary({
+  title: 'Black is white',
+  status: 'unread',
+  author: 'Talal actobar',
+  pages: 245,
+});
 
-addBookToLibrary(bookOne)
+addBookToLibrary({
+  title: "You can't Hurt me",
+  status: 'read',
+  author: 'David Coggins',
+  pages: 492,
+});
+
+addBookToLibrary({
+  title: 'Rich Dad Poor Dad',
+  status: 'unread',
+  author: 'David Kiwasaki',
+  pages: 329,
+});
+
+addBookToLibrary({
+  title: 'start with why',
+  status: 'unread',
+  author: 'Micheal Jackson',
+  pages: 245,
+});
+
+render();

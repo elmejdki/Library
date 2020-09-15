@@ -1,0 +1,17 @@
+.books_container {
+  display: flex;
+  justify-content: center;
+}
+
+.book_container {
+  display: inline-block;
+}
+
+.book_container .title,
+.book_container .author {
+  text-transform: capitalize;
+}
+
+.book_container .pages,
+.book_container .status {
+}

@@ -1,13 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/stylesheet/style.css"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/stylesheet/style.css" />
     <title>Library</title>
-</head>
-<body>
-    
+  </head>
+  <body>
+    <h1>Mestry books of the golden generation</h1>
+
+    <form>
+      <h2>Add a new book</h2>
+      <div>
+        <label for="book_title">title: </label>
+        <input type="text" id="book_title" />
+      </div>
+
+      <div>
+        <label for="book_status">status: </label>
+        <span>
+          <input type="radio" name="status" value="read" />
+          read
+        </span>
+        <span>
+          <input type="radio" name="status" value="unread" checked />
+          unread
+        </span>
+      </div>
+
+      <div>
+        <label for="book_author">author: </label>
+        <input type="text" id="book_author" />
+      </div>
+
+      <div>
+        <label for="book_pages">number of pages: </label>
+        <input type="number" id="book_pages" />
+      </div>
+
+      <button id="form_submit_button">submit</button>
+    </form>
+
+    <div id="books_container"></div>
+
     <script src="app.js"></script>
-</body>
+  </body>
 </html>
