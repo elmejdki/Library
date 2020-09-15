@@ -38,25 +38,33 @@ formButton.addEventListener('click', (e) => {
 function render() {
   books.forEach((el) => {
     const bookContainer = document.createElement('div');
+    const image = document.createElement('div');
+    const bookFooter = document.createElement('div');
     const title = document.createElement('div');
     const author = document.createElement('div');
-    const status = document.createElement('div');
-    const pages = document.createElement('div');
+    const status = document.createElement('span');
+    const pages = document.createElement('span');
 
     bookContainer.className = 'book_container';
     title.className = 'title';
     author.className = 'author';
     status.className = 'status';
     pages.className = 'pages';
+    image.className = 'book-img';
+    bookFooter.className = 'book-footer-container'
 
+
+    bookContainer.appendChild(image);
     title.textContent = el.title;
     bookContainer.appendChild(title);
     author.textContent = el.author;
     bookContainer.appendChild(author);
     status.textContent = el.status;
-    bookContainer.appendChild(status);
     pages.textContent = el.pages;
-    bookContainer.appendChild(pages);
+    bookContainer.appendChild(bookFooter);
+    bookFooter.appendChild(status);
+    bookFooter.appendChild(pages);
+
     booksContainer.appendChild(bookContainer);
   });
 }
@@ -82,6 +90,68 @@ addBookToLibrary({
   pages: 329,
 });
 
+addBookToLibrary({
+  title: 'start with why',
+  status: 'unread',
+  author: 'Micheal Jackson',
+  pages: 245,
+});
+
+
+addBookToLibrary({
+  title: 'start with why',
+  status: 'unread',
+  author: 'Micheal Jackson',
+  pages: 245,
+});
+addBookToLibrary({
+  title: 'start with why',
+  status: 'unread',
+  author: 'Micheal Jackson',
+  pages: 245,
+});
+addBookToLibrary({
+  title: 'start with why',
+  status: 'unread',
+  author: 'Micheal Jackson',
+  pages: 245,
+});
+addBookToLibrary({
+  title: 'start with why',
+  status: 'unread',
+  author: 'Micheal Jackson',
+  pages: 245,
+});
+addBookToLibrary({
+  title: 'start with why',
+  status: 'unread',
+  author: 'Micheal Jackson',
+  pages: 245,
+});
+addBookToLibrary({
+  title: 'start with why',
+  status: 'unread',
+  author: 'Micheal Jackson',
+  pages: 245,
+});
+addBookToLibrary({
+  title: 'start with why',
+  status: 'unread',
+  author: 'Micheal Jackson',
+  pages: 245,
+});
+addBookToLibrary({
+  title: 'start with why',
+  status: 'unread',
+  author: 'Micheal Jackson',
+  pages: 245,
+});
+addBookToLibrary({
+  title: 'start with why',
+  status: 'unread',
+  author: 'Micheal Jackson',
+  pages: 245,
+});
 addBookToLibrary({
   title: 'start with why',
   status: 'unread',
