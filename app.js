@@ -9,7 +9,7 @@ const formContainer = document.getElementById('form_container');
 const newBookbtn = document.querySelector('.add-btn');
 const closeBtn = document.querySelector('.cross-sign');
 
-const books = [];
+let books = [];
 
 newBookbtn.addEventListener('click', () => {
   formContainer.style.display = 'flex';
@@ -72,10 +72,10 @@ function render() {
     bookContainer.appendChild(bookFooter);
     booksContainer.appendChild(bookContainer);
 
-    deleteBtn.addEventListener('click', (e) => {
-      books.slice(el.id, 1)
-    }
-
+    deleteBtn.addEventListener('click', () => {
+      books = books.filter((book) => book.id !== el.id);
+      render();
+    });
   });
 }
 
