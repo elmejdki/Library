@@ -19,17 +19,17 @@ closeBtn.addEventListener('click', () => {
   formContainer.style.display = 'none';
 });
 
-function Book(title, status, author, imageUrl, numPages, id) {
+function Book(title, status, author, imageUrl, numPages) {
   this.title = title;
   this.status = status;
   this.author = author;
   this.imageUrl = imageUrl;
   this.pages = numPages;
-  this.id = id;
+  this.id = books.length === 0 ? 1 : books[books.length - 1].id + 1;
 }
 
-function addBookToLibrary({ title, status, author, imageUrl, pages, id }) {
-  const book = new Book(title, status, author, imageUrl, pages, id);
+function addBookToLibrary({ title, status, author, imageUrl, pages }) {
+  const book = new Book(title, status, author, imageUrl, pages);
   books.push(book);
 }
 
@@ -105,7 +105,6 @@ addBookToLibrary({
   author: 'TRACY BROGAN',
   imageUrl: 'https://m.media-amazon.com/images/I/41M36-Lt-ZL._AA210_.jpg',
   pages: 203,
-  id: 0
 });
 
 addBookToLibrary({
@@ -114,7 +113,6 @@ addBookToLibrary({
   author: 'LAILA IBRAHIM',
   imageUrl: 'https://m.media-amazon.com/images/I/51E17SVYsGL._AA210_.jpg',
   pages: 315,
-  id: 1
 });
 
 addBookToLibrary({
@@ -123,7 +121,6 @@ addBookToLibrary({
   author: 'C. T. RWIZI',
   imageUrl: 'https://m.media-amazon.com/images/I/51ZHHoQib4L._AA210_.jpg',
   pages: 251,
-  id: 2
 });
 
 addBookToLibrary({
@@ -132,7 +129,6 @@ addBookToLibrary({
   author: 'MARRY BURTON',
   imageUrl: 'https://m.media-amazon.com/images/I/41-nVMyG0tL._AA210_.jpg',
   pages: 245,
-  id: 3
 });
 
 addBookToLibrary({
@@ -141,7 +137,6 @@ addBookToLibrary({
   author: 'ROBERT BAILLEY',
   imageUrl: 'https://m.media-amazon.com/images/I/41QNl7Ph+JL._AA210_.jpg',
   pages: 402,
-  id: 4
 });
 
 addBookToLibrary({
@@ -150,7 +145,6 @@ addBookToLibrary({
   author: 'LAILA IBRAHIM',
   imageUrl: 'https://m.media-amazon.com/images/I/51EiPPgS4rL._AA210_.jpg',
   pages: 245,
-  id: 5
 });
 
 render();
