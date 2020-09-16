@@ -4,8 +4,16 @@ const bookStatus = document.querySelector("input[name='status']:checked");
 const bookAuthor = document.getElementById('book_author');
 const bookPages = document.getElementById('book_pages');
 const booksContainer = document.getElementById('books_container');
+const image_url = document.getElementById('image_url');
+
+const formElement = document.getElementById('book_form');
+const newBookbtn = document.getElementsByClassName('add-btn');
 
 const books = [];
+
+newBookbtn[0].addEventListener('click', (e) => {
+  formElement.style.display = 'block';
+});
 
 function Book(title, status, author, imageUrl, numPages) {
   // the constructor...
@@ -29,14 +37,20 @@ formButton.addEventListener('click', (e) => {
     status: bookStatus.value,
     author: bookAuthor.value,
     pages: bookPages.value,
+    url: image_url.value
   });
 
   bookTitle.value = '';
   bookAuthor.value = '';
   bookPages.value = '';
+
+  render()
 });
 
+
+
 function render() {
+  booksContainer.innerHTML = '';
   books.forEach((el) => {
     const bookContainer = document.createElement('div');
     const imageContainer = document.createElement('div');

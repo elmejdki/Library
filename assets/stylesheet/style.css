@@ -44,3 +44,13 @@
 .book_container .author {
   text-transform: capitalize;
 }
+
+form {
+  display: none;
+}
+
+.add-btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
