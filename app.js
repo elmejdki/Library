@@ -19,16 +19,17 @@ closeBtn.addEventListener('click', () => {
   formContainer.style.display = 'none';
 });
 
-function Book(title, status, author, imageUrl, numPages) {
+function Book(title, status, author, imageUrl, numPages, id) {
   this.title = title;
   this.status = status;
   this.author = author;
   this.imageUrl = imageUrl;
   this.pages = numPages;
+  this.id = id;
 }
 
-function addBookToLibrary({ title, status, author, imageUrl, pages }) {
-  const book = new Book(title, status, author, imageUrl, pages);
+function addBookToLibrary({ title, status, author, imageUrl, pages, id }) {
+  const book = new Book(title, status, author, imageUrl, pages, id);
   books.push(book);
 }
 
@@ -70,6 +71,11 @@ function render() {
     bookFooter.appendChild(pages);
     bookContainer.appendChild(bookFooter);
     booksContainer.appendChild(bookContainer);
+
+    deleteBtn.addEventListener('click', (e) => {
+      books.slice(el.id, 1)
+    }
+
   });
 }
 
@@ -89,6 +95,7 @@ formButton.addEventListener('click', (e) => {
   bookPages.value = '';
   imageUrl.value = '';
 
+  formContainer.style.display = 'none';
   render();
 });
 
@@ -98,6 +105,7 @@ addBookToLibrary({
   author: 'TRACY BROGAN',
   imageUrl: 'https://m.media-amazon.com/images/I/41M36-Lt-ZL._AA210_.jpg',
   pages: 203,
+  id: 0
 });
 
 addBookToLibrary({
@@ -106,6 +114,7 @@ addBookToLibrary({
   author: 'LAILA IBRAHIM',
   imageUrl: 'https://m.media-amazon.com/images/I/51E17SVYsGL._AA210_.jpg',
   pages: 315,
+  id: 1
 });
 
 addBookToLibrary({
@@ -114,6 +123,7 @@ addBookToLibrary({
   author: 'C. T. RWIZI',
   imageUrl: 'https://m.media-amazon.com/images/I/51ZHHoQib4L._AA210_.jpg',
   pages: 251,
+  id: 2
 });
 
 addBookToLibrary({
@@ -122,6 +132,7 @@ addBookToLibrary({
   author: 'MARRY BURTON',
   imageUrl: 'https://m.media-amazon.com/images/I/41-nVMyG0tL._AA210_.jpg',
   pages: 245,
+  id: 3
 });
 
 addBookToLibrary({
@@ -130,6 +141,7 @@ addBookToLibrary({
   author: 'ROBERT BAILLEY',
   imageUrl: 'https://m.media-amazon.com/images/I/41QNl7Ph+JL._AA210_.jpg',
   pages: 402,
+  id: 4
 });
 
 addBookToLibrary({
@@ -138,6 +150,7 @@ addBookToLibrary({
   author: 'LAILA IBRAHIM',
   imageUrl: 'https://m.media-amazon.com/images/I/51EiPPgS4rL._AA210_.jpg',
   pages: 245,
+  id: 5
 });
 
 render();
