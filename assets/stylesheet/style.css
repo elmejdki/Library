@@ -226,23 +226,22 @@ li:hover {
 }
 
 .toggle-wrapper input {
-	height: 40px;
-	left: 0;
-	opacity: 0;
-	position: absolute;
-	top: 0;
-	width: 40px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
+/*
 .toggle-wrapper {
 	flex: 1 1 calc(100% / 3);
 	min-height: 50vh;
-	display: flex;
+	display: inline-block;
 	align-items: center;
 	justify-content: center;
 	overflow: hidden;
 	position: relative;
 }
+*/
 
 @media (max-width: 960px) {
 	.toggle-wrapper {
@@ -256,6 +255,7 @@ li:hover {
 	}
 }
 
+/*
 .toggle-wrapper:nth-child(7) .toggle {
 	transform: translate(-40px, 40px);
 }
@@ -267,10 +267,12 @@ li:hover {
 .toggle-wrapper:nth-child(8) .toggle {
 	transform: translate(-40px, 40px);
 }
+*/
 
 .toggle {
 	position: relative;
 	display: inline-block;
+  transform: scale(0.3);
 }
 
 label.toggle-item {
