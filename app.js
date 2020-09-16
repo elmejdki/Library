@@ -4,15 +4,19 @@ const bookStatus = document.querySelector("input[name='status']:checked");
 const bookAuthor = document.getElementById('book_author');
 const bookPages = document.getElementById('book_pages');
 const booksContainer = document.getElementById('books_container');
-const image_url = document.getElementById('image_url');
-
-const formElement = document.getElementById('book_form');
-const newBookbtn = document.getElementsByClassName('add-btn');
+const imageUrl = document.getElementById('image_url');
+const formContainer = document.getElementById('form_container');
+const newBookbtn = document.querySelector('.add-btn');
+const closeBtn = document.querySelector('.cross-sign');
 
 const books = [];
 
-newBookbtn[0].addEventListener('click', (e) => {
-  formElement.style.display = 'block';
+newBookbtn.addEventListener('click', () => {
+  formContainer.style.display = 'flex';
+});
+
+closeBtn.addEventListener('click', () => {
+  formContainer.style.display = 'none';
 });
 
 function Book(title, status, author, imageUrl, numPages) {
@@ -28,26 +32,6 @@ function addBookToLibrary({ title, status, author, imageUrl, pages }) {
   const book = new Book(title, status, author, imageUrl, pages);
   books.push(book);
 }
-
-formButton.addEventListener('click', (e) => {
-  e.preventDefault();
-
-  addBookToLibrary({
-    title: bookTitle.value,
-    status: bookStatus.value,
-    author: bookAuthor.value,
-    pages: bookPages.value,
-    url: image_url.value
-  });
-
-  bookTitle.value = '';
-  bookAuthor.value = '';
-  bookPages.value = '';
-
-  render()
-});
-
-
 
 function render() {
   booksContainer.innerHTML = '';
@@ -86,6 +70,25 @@ function render() {
     booksContainer.appendChild(bookContainer);
   });
 }
+
+formButton.addEventListener('click', (e) => {
+  e.preventDefault();
+
+  addBookToLibrary({
+    title: bookTitle.value,
+    status: bookStatus.value,
+    author: bookAuthor.value,
+    imageUrl: imageUrl.value,
+    pages: bookPages.value,
+  });
+
+  bookTitle.value = '';
+  bookAuthor.value = '';
+  bookPages.value = '';
+  imageUrl.value = '';
+
+  render();
+});
 
 addBookToLibrary({
   title: 'Crazy Little Thing',
@@ -131,7 +134,7 @@ addBookToLibrary({
   title: 'Golden Poppies',
   status: 'read',
   author: 'LAILA IBRAHIM',
-  imageUrl: 'https://m.media-amazon.com/images/I/41M36-Lt-ZL._AA210_.jpg',
+  imageUrl: 'https://m.media-amazon.com/images/I/51EiPPgS4rL._AA210_.jpg',
   pages: 245,
 });
 
