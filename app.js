@@ -20,7 +20,6 @@ closeBtn.addEventListener('click', () => {
 });
 
 function Book(title, status, author, imageUrl, numPages) {
-  // the constructor...
   this.title = title;
   this.status = status;
   this.author = author;
@@ -36,7 +35,8 @@ function addBookToLibrary({ title, status, author, imageUrl, pages }) {
 function render() {
   booksContainer.innerHTML = '';
   books.forEach((el) => {
-    const bookContainer = document.createElement('div');
+    const bookContainer = document.createElement('span');
+    const deleteBtn = document.createElement('div');
     const imageContainer = document.createElement('div');
     const image = document.createElement('img');
     image.setAttribute('src', el.imageUrl);
@@ -46,15 +46,18 @@ function render() {
     const status = document.createElement('span');
     const pages = document.createElement('span');
 
-    bookContainer.className = 'book_container';
-    title.className = 'title';
-    author.className = 'author';
-    status.className = 'status';
-    pages.className = 'pages';
-    imageContainer.className = 'image_container';
-    image.className = 'img';
-    bookFooter.className = 'book-footer-container';
+    deleteBtn.classList.add('smaller-cross');
+    deleteBtn.textContent = 'X';
+    bookContainer.classList.add('book_container');
+    title.classList.add('title');
+    author.classList.add('author');
+    status.classList.add('status');
+    pages.classList.add('pages');
+    imageContainer.classList.add('image_container');
+    image.classList.add('img');
+    bookFooter.classList.add('book-footer-container');
 
+    bookContainer.appendChild(deleteBtn);
     imageContainer.appendChild(image);
     bookContainer.appendChild(imageContainer);
     title.textContent = el.title;
@@ -66,7 +69,6 @@ function render() {
     bookFooter.appendChild(status);
     bookFooter.appendChild(pages);
     bookContainer.appendChild(bookFooter);
-
     booksContainer.appendChild(bookContainer);
   });
 }
