@@ -1,22 +1,4 @@
-const formButton = document.getElementById('form_submit_button');
-const bookTitle = document.getElementById('book_title');
-const bookAuthor = document.getElementById('book_author');
-const bookPages = document.getElementById('book_pages');
-const booksContainer = document.getElementById('books_container');
-const imageUrl = document.getElementById('image_url');
-const formContainer = document.getElementById('form_container');
-const newBookbtn = document.querySelector('.add-btn');
-const closeBtn = document.querySelector('.cross-sign');
-
 let books = [];
-
-newBookbtn.addEventListener('click', () => {
-  formContainer.style.display = 'flex';
-});
-
-closeBtn.addEventListener('click', () => {
-  formContainer.style.display = 'none';
-});
 
 function Book(title, status, author, imageUrl, numPages) {
   this.title = title;
@@ -31,6 +13,16 @@ function addBookToLibrary({ title, status, author, imageUrl, pages }) {
   const book = new Book(title, status, author, imageUrl, pages);
   books.push(book);
 }
+
+const formButton = document.getElementById('form_submit_button');
+const bookTitle = document.getElementById('book_title');
+const bookAuthor = document.getElementById('book_author');
+const bookPages = document.getElementById('book_pages');
+const booksContainer = document.getElementById('books_container');
+const imageUrl = document.getElementById('image_url');
+const formContainer = document.getElementById('form_container');
+const newBookbtn = document.querySelector('.add-btn');
+const closeBtn = document.querySelector('.cross-sign');
 
 function render() {
   booksContainer.innerHTML = '';
@@ -150,6 +142,14 @@ formButton.addEventListener('click', (e) => {
 
   formContainer.style.display = 'none';
   render();
+});
+
+newBookbtn.addEventListener('click', () => {
+  formContainer.style.display = 'flex';
+});
+
+closeBtn.addEventListener('click', () => {
+  formContainer.style.display = 'none';
 });
 
 addBookToLibrary({
