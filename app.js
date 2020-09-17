@@ -122,25 +122,40 @@ function render() {
   });
 }
 
+function validateLenth() {
+  const titleMsg = document.getElementById('title-length-valid');
+  titleMsg.style.display = 'none';
+
+  const title = bookTitle.value;
+  if (title === '') {
+    titleMsg.style.display = 'block';
+    titleMsg.textContent = 'title cannot be empty';
+    return false;
+  }
+
+  return true;
+}
+
 formButton.addEventListener('click', (e) => {
   e.preventDefault();
-
   const status = document.querySelector("input[name='status']:checked").value;
 
-  addBookToLibrary({
-    title: bookTitle.value,
-    status,
-    author: bookAuthor.value,
-    imageUrl: imageUrl.value,
-    pages: bookPages.value,
-  });
+  if (validateLenth()) {
+    addBookToLibrary({
+      title: bookTitle.value,
+      status,
+      author: bookAuthor.value,
+      imageUrl: imageUrl.value,
+      pages: bookPages.value,
+    });
+  }
 
   bookTitle.value = '';
   bookAuthor.value = '';
   bookPages.value = '';
   imageUrl.value = '';
 
-  formContainer.style.display = 'none';
+  // formContainer.style.display = 'none';
   render();
 });
 
