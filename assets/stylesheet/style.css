@@ -1,3 +1,13 @@
+* {
+  box-sizing: border-box;
+}
+
+*::before,
+*::after {
+  content: '';
+  position: absolute;
+}
+
 body {
   padding: 0;
   margin: 0;
@@ -60,7 +70,7 @@ li:hover {
   display: flex;
   flex-direction: column;
   border-radius: 10px;
-  box-shadow: 0px 0px 12px -5px black;
+  box-shadow: 0 0 12px -5px black;
   padding: 10px 0;
 }
 
@@ -122,7 +132,7 @@ li:hover {
 }
 
 .cross-sign:hover {
-  text-shadow: 0px 0px 5px black;
+  text-shadow: 0 0 5px black;
 }
 
 .smaller-cross {
@@ -138,14 +148,14 @@ li:hover {
 }
 
 .smaller-cross:hover {
-  text-shadow: 0px 0px 25px rgb(151, 151, 151);
+  text-shadow: 0 0 25px rgb(151, 151, 151);
 }
 
 #form_container h2 {
   font-size: 30px;
   text-transform: capitalize;
   color: white;
-  text-shadow: 0px 0px 13px black;
+  text-shadow: 0 0 13px black;
   text-align: center;
 }
 
@@ -156,7 +166,7 @@ li:hover {
   font-weight: bold;
   text-transform: capitalize;
   color: white;
-  text-shadow: 0px 0px 3px black;
+  text-shadow: 0 0 3px black;
   margin-right: 10px;
 }
 
@@ -179,7 +189,7 @@ li:hover {
 
 .form-input span {
   color: white;
-  text-shadow: 0px 0px 3px black;
+  text-shadow: 0 0 3px black;
   display: flex;
   align-items: center;
 }
@@ -221,15 +231,6 @@ li:hover {
 
 /* Toggle button */
 
-* {
-	box-sizing: border-box;
-}
-
-*:before, *:after {
-	content: '';
-	position: absolute;
-}
-
 .toggle-wrapper {
   display: flex;
   align-items: center;
@@ -246,64 +247,66 @@ li:hover {
   position: absolute;
   right: -65px;
   top: -22px;
-	display: inline-block;
+  display: inline-block;
   transform: scale(0.3);
 }
 
 label.toggle-item {
-	width: 7em;
-	background: #2e394d;
-	height: 3em;
-	display: inline-block;
-	border-radius: 50px;
-	position: relative;
-	transition: all .3s ease;
-	transform-origin: 20% center;
-	cursor: pointer;
+  width: 7em;
+  background: #2e394d;
+  height: 3em;
+  display: inline-block;
+  border-radius: 50px;
+  position: relative;
+  transition: all 0.3s ease;
+  transform-origin: 20% center;
+  cursor: pointer;
 }
 
-label.toggle-item:before {
-	display: block;
-	transition: all .2s ease;
-	width: 2.3em;
-	height: 2.3em;
-	top: .25em;
-	left: .25em;
-	border-radius: 2em;
-	border: 2px solid #88cf8f;
-	transition: .3s ease;
+label.toggle-item::before {
+  display: block;
+  width: 2.3em;
+  height: 2.3em;
+  top: 0.25em;
+  left: 0.25em;
+  border-radius: 2em;
+  border: 2px solid #88cf8f;
+  transition: all 0.3s ease;
 }
 
+/* stylelint-disable no-descending-specificity */
 .normal label {
-	background: #af4c4c;
-	border: 0.5px solid rgba(117, 117, 117, 0.31);
-	box-shadow: inset 0px 0px 4px 0px rgba(0, 0, 0, 0.2), 0 -3px 4px rgba(0, 0, 0, 0.15);
+  background: #af4c4c;
+  border: 0.5px solid rgba(117, 117, 117, 0.31);
+  box-shadow: inset 0 0 4px 0 rgba(0, 0, 0, 0.2), 0 -3px 4px rgba(0, 0, 0, 0.15);
 }
 
-.normal label:before {
-	border: none;
-	width: 2.5em;
-	height: 2.5em;
-	box-shadow: inset 0.5px -1px 1px rgba(0, 0, 0, 0.35);
-	background: #fff;
-	transform: rotate(-25deg);
+.normal label::before {
+  border: none;
+  width: 2.5em;
+  height: 2.5em;
+  box-shadow: inset 0.5px -1px 1px rgba(0, 0, 0, 0.35);
+  background: #fff;
+  transform: rotate(-25deg);
 }
 
-.normal label:after {
-	background: transparent;
-	height: calc(100% + 8px);
-	border-radius: 30px;
-	top: -5px;
-	width: calc(100% + 8px);
-	left: -4px;
-	z-index: 0;
-	box-shadow: inset 0px 2px 4px -2px rgba(0, 0, 0, 0.2), 0px 1px 2px 0px rgba(151, 151, 151, 0.2);
+.normal label::after {
+  background: transparent;
+  height: calc(100% + 8px);
+  border-radius: 30px;
+  top: -5px;
+  width: calc(100% + 8px);
+  left: -4px;
+  z-index: 0;
+  box-shadow:
+    inset 0 2px 4px -2px rgba(0, 0, 0, 0.2),
+    0 1px 2px 0 rgba(151, 151, 151, 0.2);
 }
 
 .active + .toggle-item {
   background: #4caf50;
 }
 
-.active + .toggle-item:before {
+.active + .toggle-item::before {
   left: 52px;
 }
