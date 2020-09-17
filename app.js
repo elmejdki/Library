@@ -1,17 +1,39 @@
+const firebaseConfig = {
+  apiKey: 'AIzaSyB9h-hEbWsJ7wRjflGISx8D2AltVhfofVg',
+  authDomain: 'librarybooks-13be3.firebaseapp.com',
+  databaseURL: 'https://librarybooks-13be3.firebaseio.com',
+  projectId: 'librarybooks-13be3',
+  storageBucket: 'librarybooks-13be3.appspot.com',
+  messagingSenderId: '459091533981',
+  appId: '1:459091533981:web:839fb561e89b2e55c17474'
+};
+
+// TODO: please fix the rendring later
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+const database = firebase.database();
+const booksRef = database.ref('books');
+
+booksRef.on('value', (dataSnapshot) => {
+  render(dataSnapshot.val());
+});
+
 let books = [];
 
 function Book(title, status, author, imageUrl, numPages) {
   this.title = title;
   this.status = status;
   this.author = author;
-  this.imageUrl = imageUrl;
+  this.imageUrl = imageUrl || 'https://www.brantlibrary.ca/en/resourcesGeneral/default-river.png';
   this.pages = numPages;
-  this.id = books.length === 0 ? 1 : books[books.length - 1].id + 1;
 }
 
 function addBookToLibrary({ title, status, author, imageUrl, pages }) {
   const book = new Book(title, status, author, imageUrl, pages);
-  books.push(book);
+  const newBookRef = booksRef.push();
+  newBookRef.set(book);
 }
 
 const formButton = document.getElementById('form_submit_button');
@@ -24,7 +46,7 @@ const formContainer = document.getElementById('form_container');
 const newBookbtn = document.querySelector('.add-btn');
 const closeBtn = document.querySelector('.cross-sign');
 
-function render() {
+function render(books) {
   booksContainer.innerHTML = '';
 
   let bookContainer;
@@ -42,12 +64,14 @@ function render() {
   let checkboxInput;
   let toggleLabel;
 
-  books.forEach((el) => {
+  for(let bookKey in books) {
+    const key = bookKey;
+
     bookContainer = document.createElement('span');
     deleteBtn = document.createElement('div');
     imageContainer = document.createElement('div');
     image = document.createElement('img');
-    image.setAttribute('src', el.imageUrl);
+    image.setAttribute('src', books[bookKey].imageUrl);
     bookFooter = document.createElement('div');
     title = document.createElement('div');
     author = document.createElement('div');
@@ -65,7 +89,7 @@ function render() {
     title.classList.add('title');
     author.classList.add('author');
     status.classList.add('status');
-    if (el.status === 'read') {
+    if (books[bookKey].status === 'read') {
       checkboxInput.className = 'active';
     }
     pages.classList.add('pages');
@@ -82,12 +106,12 @@ function render() {
     bookContainer.appendChild(deleteBtn);
     imageContainer.appendChild(image);
     bookContainer.appendChild(imageContainer);
-    title.textContent = el.title;
+    title.textContent = books[bookKey].title;
     bookContainer.appendChild(title);
-    author.textContent = el.author;
+    author.textContent = books[bookKey].author;
     bookContainer.appendChild(author);
-    status.textContent = el.status;
-    pages.textContent = `${el.pages} pages`;
+    status.textContent = books[bookKey].status;
+    pages.textContent = `${books[bookKey].pages} pages`;
 
     toggleNormal.appendChild(checkboxInput);
     toggleNormal.appendChild(toggleLabel);
@@ -101,25 +125,26 @@ function render() {
     booksContainer.appendChild(bookContainer);
 
     deleteBtn.addEventListener('click', () => {
-      books = books.filter((book) => book.id !== el.id);
-      render();
+      database.ref(`books/${key}`).remove();
     });
 
     toggleLabel.addEventListener('click', (e) => {
       const input = e.target.parentNode.querySelector('input');
       const statusSpan = e.target.parentNode.parentNode.querySelector('.status');
-
-      if (el.status === 'read') {
-        el.status = 'unread';
-        statusSpan.textContent = 'unread';
+      
+      if (statusSpan.textContent === 'read') {
+        database.ref(`books/${key}/status`).set('unread');
+        // books[bookKey].status = 'unread';
+        // statusSpan.textContent = 'unread';
       } else {
-        el.status = 'read';
-        statusSpan.textContent = 'read';
+        database.ref(`books/${key}/status`).set('read');
+        // books[bookKey].status = 'read';
+        // statusSpan.textContent = 'read';
       }
 
       input.classList.toggle('active');
     });
-  });
+  }
 }
 
 formButton.addEventListener('click', (e) => {
@@ -152,52 +177,52 @@ closeBtn.addEventListener('click', () => {
   formContainer.style.display = 'none';
 });
 
-addBookToLibrary({
-  title: 'Crazy Little Thing',
-  status: 'unread',
-  author: 'TRACY BROGAN',
-  imageUrl: 'https://m.media-amazon.com/images/I/41M36-Lt-ZL._AA210_.jpg',
-  pages: 203,
-});
+// addBookToLibrary({
+//   title: 'Crazy Little Thing',
+//   status: 'unread',
+//   author: 'TRACY BROGAN',
+//   imageUrl: 'https://m.media-amazon.com/images/I/41M36-Lt-ZL._AA210_.jpg',
+//   pages: 203,
+// });
 
-addBookToLibrary({
-  title: 'Mustard Seed',
-  status: 'unread',
-  author: 'LAILA IBRAHIM',
-  imageUrl: 'https://m.media-amazon.com/images/I/51E17SVYsGL._AA210_.jpg',
-  pages: 315,
-});
+// addBookToLibrary({
+//   title: 'Mustard Seed',
+//   status: 'unread',
+//   author: 'LAILA IBRAHIM',
+//   imageUrl: 'https://m.media-amazon.com/images/I/51E17SVYsGL._AA210_.jpg',
+//   pages: 315,
+// });
 
-addBookToLibrary({
-  title: 'Scarlet Odyssey',
-  status: 'unread',
-  author: 'C. T. RWIZI',
-  imageUrl: 'https://m.media-amazon.com/images/I/51ZHHoQib4L._AA210_.jpg',
-  pages: 251,
-});
+// addBookToLibrary({
+//   title: 'Scarlet Odyssey',
+//   status: 'unread',
+//   author: 'C. T. RWIZI',
+//   imageUrl: 'https://m.media-amazon.com/images/I/51ZHHoQib4L._AA210_.jpg',
+//   pages: 251,
+// });
 
-addBookToLibrary({
-  title: 'never look back',
-  status: 'read',
-  author: 'MARRY BURTON',
-  imageUrl: 'https://m.media-amazon.com/images/I/41-nVMyG0tL._AA210_.jpg',
-  pages: 245,
-});
+// addBookToLibrary({
+//   title: 'never look back',
+//   status: 'read',
+//   author: 'MARRY BURTON',
+//   imageUrl: 'https://m.media-amazon.com/images/I/41-nVMyG0tL._AA210_.jpg',
+//   pages: 245,
+// });
 
-addBookToLibrary({
-  title: 'Legacy of Lies',
-  status: 'unread',
-  author: 'ROBERT BAILLEY',
-  imageUrl: 'https://m.media-amazon.com/images/I/41QNl7Ph+JL._AA210_.jpg',
-  pages: 402,
-});
+// addBookToLibrary({
+//   title: 'Legacy of Lies',
+//   status: 'unread',
+//   author: 'ROBERT BAILLEY',
+//   imageUrl: 'https://m.media-amazon.com/images/I/41QNl7Ph+JL._AA210_.jpg',
+//   pages: 402,
+// });
 
-addBookToLibrary({
-  title: 'Golden Poppies',
-  status: 'read',
-  author: 'LAILA IBRAHIM',
-  imageUrl: 'https://m.media-amazon.com/images/I/51EiPPgS4rL._AA210_.jpg',
-  pages: 245,
-});
+// addBookToLibrary({
+//   title: 'Golden Poppies',
+//   status: 'read',
+//   author: 'LAILA IBRAHIM',
+//   imageUrl: 'https://m.media-amazon.com/images/I/51EiPPgS4rL._AA210_.jpg',
+//   pages: 245,
+// });
 
 render();
