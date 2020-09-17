@@ -35,22 +35,38 @@ function addBookToLibrary({ title, status, author, imageUrl, pages }) {
 
 function render() {
   booksContainer.innerHTML = '';
-  books.forEach((el) => {
-    const bookContainer = document.createElement('span');
-    const deleteBtn = document.createElement('div');
-    const imageContainer = document.createElement('div');
-    const image = document.createElement('img');
-    image.setAttribute('src', el.imageUrl);
-    const bookFooter = document.createElement('div');
-    const title = document.createElement('div');
-    const author = document.createElement('div');
-    const status = document.createElement('span');
-    const pages = document.createElement('span');
 
-    const toggleWrapper = document.createElement('div');
-    const toggleNormal = document.createElement('div');
-    const checkboxInput = document.createElement('input');
-    const toggleLabel = document.createElement('label');
+  let bookContainer;
+  let deleteBtn;
+  let imageContainer;
+  let image;
+  let bookFooter;
+  let title;
+  let author;
+  let status;
+  let pages;
+
+  let toggleWrapper;
+  let toggleNormal;
+  let checkboxInput;
+  let toggleLabel;
+
+  books.forEach((el) => {
+    bookContainer = document.createElement('span');
+    deleteBtn = document.createElement('div');
+    imageContainer = document.createElement('div');
+    image = document.createElement('img');
+    image.setAttribute('src', el.imageUrl);
+    bookFooter = document.createElement('div');
+    title = document.createElement('div');
+    author = document.createElement('div');
+    status = document.createElement('span');
+    pages = document.createElement('span');
+
+    toggleWrapper = document.createElement('div');
+    toggleNormal = document.createElement('div');
+    checkboxInput = document.createElement('input');
+    toggleLabel = document.createElement('label');
 
     deleteBtn.classList.add('smaller-cross');
     deleteBtn.textContent = 'X';
@@ -58,6 +74,9 @@ function render() {
     title.classList.add('title');
     author.classList.add('author');
     status.classList.add('status');
+    if (el.status === 'read') {
+      checkboxInput.className = 'active';
+    }
     pages.classList.add('pages');
     imageContainer.classList.add('image_container');
     image.classList.add('img');
@@ -93,6 +112,21 @@ function render() {
     deleteBtn.addEventListener('click', () => {
       books = books.filter((book) => book.id !== el.id);
       render();
+    });
+
+    toggleLabel.addEventListener('click', (e) => {
+      const input = e.target.parentNode.querySelector('input');
+      const statusSpan = e.target.parentNode.parentNode.querySelector('.status');
+
+      if (el.status === 'read') {
+        el.status = 'unread';
+        statusSpan.textContent = 'unread';
+      } else {
+        el.status = 'read';
+        statusSpan.textContent = 'read';
+      }
+
+      input.classList.toggle('active');
     });
   });
 }
