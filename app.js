@@ -1,6 +1,5 @@
 const formButton = document.getElementById('form_submit_button');
 const bookTitle = document.getElementById('book_title');
-const bookStatus = document.querySelector("input[name='status']:checked");
 const bookAuthor = document.getElementById('book_author');
 const bookPages = document.getElementById('book_pages');
 const booksContainer = document.getElementById('books_container');
@@ -134,9 +133,11 @@ function render() {
 formButton.addEventListener('click', (e) => {
   e.preventDefault();
 
+  const status = document.querySelector("input[name='status']:checked").value;
+
   addBookToLibrary({
     title: bookTitle.value,
-    status: bookStatus.value,
+    status,
     author: bookAuthor.value,
     imageUrl: imageUrl.value,
     pages: bookPages.value,
