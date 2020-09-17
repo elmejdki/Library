@@ -47,6 +47,11 @@ function render() {
     const status = document.createElement('span');
     const pages = document.createElement('span');
 
+    const toggleWrapper = document.createElement('div');
+    const toggleNormal = document.createElement('div');
+    const checkboxInput = document.createElement('input');
+    const toggleLabel = document.createElement('label');
+
     deleteBtn.classList.add('smaller-cross');
     deleteBtn.textContent = 'X';
     bookContainer.classList.add('book_container');
@@ -58,6 +63,12 @@ function render() {
     image.classList.add('img');
     bookFooter.classList.add('book-footer-container');
 
+    toggleWrapper.className = 'toggle-wrapper';
+    toggleNormal.className = 'toggle normal';
+    checkboxInput.setAttribute('type', 'checkbox');
+    toggleLabel.className = 'toggle-item';
+    toggleLabel.setAttribute('for', 'normal');
+
     bookContainer.appendChild(deleteBtn);
     imageContainer.appendChild(image);
     bookContainer.appendChild(imageContainer);
@@ -66,10 +77,17 @@ function render() {
     author.textContent = el.author;
     bookContainer.appendChild(author);
     status.textContent = el.status;
-    pages.textContent = el.pages;
-    bookFooter.appendChild(status);
+    pages.textContent = `${el.pages} pages`;
+
+    toggleNormal.appendChild(checkboxInput);
+    toggleNormal.appendChild(toggleLabel);
+    toggleWrapper.appendChild(toggleNormal);
+    toggleWrapper.appendChild(status);
+
+    bookFooter.appendChild(toggleWrapper);
     bookFooter.appendChild(pages);
     bookContainer.appendChild(bookFooter);
+
     booksContainer.appendChild(bookContainer);
 
     deleteBtn.addEventListener('click', () => {

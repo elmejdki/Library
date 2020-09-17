@@ -214,6 +214,11 @@ li:hover {
   height: auto;
 }
 
+.status {
+  position: absolute;
+  left: 42px;
+}
+
 /* Toggle button */
 
 * {
@@ -225,52 +230,22 @@ li:hover {
 	position: absolute;
 }
 
+.toggle-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
 .toggle-wrapper input {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
 }
 
-/*
-.toggle-wrapper {
-	flex: 1 1 calc(100% / 3);
-	min-height: 50vh;
-	display: inline-block;
-	align-items: center;
-	justify-content: center;
-	overflow: hidden;
-	position: relative;
-}
-*/
-
-@media (max-width: 960px) {
-	.toggle-wrapper {
-		flex: 1 1 calc(100% / 2);
-	}
-}
-
-@media (max-width: 700px) {
-	.toggle-wrapper {
-		flex: 1 1 100%;
-	}
-}
-
-/*
-.toggle-wrapper:nth-child(7) .toggle {
-	transform: translate(-40px, 40px);
-}
-
-.toggle-wrapper:nth-child(8) {
-	background: #decf87;
-}
-
-.toggle-wrapper:nth-child(8) .toggle {
-	transform: translate(-40px, 40px);
-}
-*/
-
 .toggle {
-	position: relative;
+  position: absolute;
+  right: -65px;
+  top: -22px;
 	display: inline-block;
   transform: scale(0.3);
 }
@@ -281,7 +256,6 @@ label.toggle-item {
 	height: 3em;
 	display: inline-block;
 	border-radius: 50px;
-	margin: 40px;
 	position: relative;
 	transition: all .3s ease;
 	transform-origin: 20% center;
@@ -326,10 +300,10 @@ label.toggle-item:before {
 	box-shadow: inset 0px 2px 4px -2px rgba(0, 0, 0, 0.2), 0px 1px 2px 0px rgba(151, 151, 151, 0.2);
 }
 
-#normal:checked + label {
-	background: #4caf50;
+.active + .toggle-item {
+  background: #4caf50;
 }
 
-#normal:checked + label:before {
-	left: 67px;
+.active + .toggle-item:before {
+  left: 52px;
 }
