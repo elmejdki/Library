@@ -1,16 +1,14 @@
-# Project Name
+# Library
 
-> One paragraph statement about the project.
+> This a book Library project where it show's different books that are available in the store and allow the user to add more books or delete some other ones
 
 ![screenshot](./app_screenshot.png)
 
-Additional description about the project and its features.
-
 ## Built With
 
-- Major languages,
-- frameworks,
-- technologies used
+- HTMl,
+- CSS,
+- Javascript
 
 ## Live Demo
 
@@ -19,39 +17,20 @@ Additional description about the project and its features.
 
 ## Getting Started
 
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
-
-
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-### Setup
-
-### Install
-
-### Usage
-
-### Run tests
-
-### Deployment
-
-
+clone the repository to get a local copy.
 
 ## Authors
 
-👤 **Author1**
+👤 **Zakariae El Mejdki**
 
-- Github: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- Linkedin: [linkedin](https://linkedin.com/linkedinhandle)
+- Github: [@elmejdki](https://github.com/elmejdki)
+- Twitter: [@zakariae_elmejdki](https://twitter.com/zakariaemejdki)
+- Linkedin: [El Mejdki Zakariae](https://www.linkedin.com/in/zakariaeelmejdki/)
 
-👤 **Author2**
-
-- Github: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- Linkedin: [linkedin](https://linkedin.com/linkedinhandle)
+👤 **Chukwuebuka Paul Ajuizeogu**
+- Github: [@misterpaul4](https://github.com/misterpaul4)
+- Twitter: [@paulajuze](https://twitter.com/paulajuze)
+- Linkedin: [Chukwuebuka Paul Ajuizeogu](https://www.linkedin.com/in/chukwuebuka-paul-ajuizeogu/)
 
 ## 🤝 Contributing
 
@@ -62,12 +41,6 @@ Feel free to check the [issues page](issues/).
 ## Show your support
 
 Give a ⭐️ if you like this project!
-
-## Acknowledgments
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
 
 ## 📝 License
 
