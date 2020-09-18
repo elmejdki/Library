@@ -122,25 +122,44 @@ function render() {
   });
 }
 
-function validateLenth() {
+function validate() {
   const titleMsg = document.getElementById('title-length-valid');
+  const authorMsg = document.getElementById('author-name-valid');
   titleMsg.style.display = 'none';
+  authorMsg.style.display = 'none';
+  let validAuthorName = true;
+  const letterRegex = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
+
+  const validAuthor = () => {
+    if (bookAuthor.value.length > 0 && letterRegex.test(bookAuthor.value.trim()) !== true) {
+      authorMsg.style.display = 'block';
+      authorMsg.textContent = 'invalid character detected!';
+      validAuthorName = false;
+    }
+  };
+
+  validAuthor();
 
   const title = bookTitle.value;
   if (title === '') {
     titleMsg.style.display = 'block';
     titleMsg.textContent = 'title cannot be empty';
     return false;
+  } if (title.length > 20) {
+    titleMsg.style.display = 'block';
+    titleMsg.textContent = 'title cannot be more than 20 characters';
+    return false;
   }
 
-  return true;
+  if (validAuthorName) { return true; }
+  return false;
 }
 
 formButton.addEventListener('click', (e) => {
   e.preventDefault();
   const status = document.querySelector("input[name='status']:checked").value;
 
-  if (validateLenth()) {
+  if (validate()) {
     addBookToLibrary({
       title: bookTitle.value,
       status,
@@ -148,14 +167,14 @@ formButton.addEventListener('click', (e) => {
       imageUrl: imageUrl.value,
       pages: bookPages.value,
     });
+
+    formContainer.style.display = 'none';
+
+    bookTitle.value = '';
+    bookAuthor.value = '';
+    bookPages.value = '';
+    imageUrl.value = '';
   }
-
-  bookTitle.value = '';
-  bookAuthor.value = '';
-  bookPages.value = '';
-  imageUrl.value = '';
-
-  // formContainer.style.display = 'none';
   render();
 });
 
