@@ -20,8 +20,6 @@ booksRef.on('value', (dataSnapshot) => {
   render(dataSnapshot.val());
 });
 
-let books = [];
-
 function Book(title, status, author, imageUrl, numPages) {
   this.title = title;
   this.status = status;
@@ -32,8 +30,8 @@ function Book(title, status, author, imageUrl, numPages) {
 
 function addBookToLibrary({ title, status, author, imageUrl, pages }) {
   const book = new Book(title, status, author, imageUrl, pages);
-  const newBookRef = booksRef.push();
-  newBookRef.set(book);
+  const newRef = booksRef.push();
+  newRef.set(book);
 }
 
 const formButton = document.getElementById('form_submit_button');
@@ -134,12 +132,8 @@ function render(books) {
       
       if (statusSpan.textContent === 'read') {
         database.ref(`books/${key}/status`).set('unread');
-        // books[bookKey].status = 'unread';
-        // statusSpan.textContent = 'unread';
       } else {
         database.ref(`books/${key}/status`).set('read');
-        // books[bookKey].status = 'read';
-        // statusSpan.textContent = 'read';
       }
 
       input.classList.toggle('active');
@@ -166,7 +160,6 @@ formButton.addEventListener('click', (e) => {
   imageUrl.value = '';
 
   formContainer.style.display = 'none';
-  render();
 });
 
 newBookbtn.addEventListener('click', () => {
@@ -176,53 +169,3 @@ newBookbtn.addEventListener('click', () => {
 closeBtn.addEventListener('click', () => {
   formContainer.style.display = 'none';
 });
-
-// addBookToLibrary({
-//   title: 'Crazy Little Thing',
-//   status: 'unread',
-//   author: 'TRACY BROGAN',
-//   imageUrl: 'https://m.media-amazon.com/images/I/41M36-Lt-ZL._AA210_.jpg',
-//   pages: 203,
-// });
-
-// addBookToLibrary({
-//   title: 'Mustard Seed',
-//   status: 'unread',
-//   author: 'LAILA IBRAHIM',
-//   imageUrl: 'https://m.media-amazon.com/images/I/51E17SVYsGL._AA210_.jpg',
-//   pages: 315,
-// });
-
-// addBookToLibrary({
-//   title: 'Scarlet Odyssey',
-//   status: 'unread',
-//   author: 'C. T. RWIZI',
-//   imageUrl: 'https://m.media-amazon.com/images/I/51ZHHoQib4L._AA210_.jpg',
-//   pages: 251,
-// });
-
-// addBookToLibrary({
-//   title: 'never look back',
-//   status: 'read',
-//   author: 'MARRY BURTON',
-//   imageUrl: 'https://m.media-amazon.com/images/I/41-nVMyG0tL._AA210_.jpg',
-//   pages: 245,
-// });
-
-// addBookToLibrary({
-//   title: 'Legacy of Lies',
-//   status: 'unread',
-//   author: 'ROBERT BAILLEY',
-//   imageUrl: 'https://m.media-amazon.com/images/I/41QNl7Ph+JL._AA210_.jpg',
-//   pages: 402,
-// });
-
-// addBookToLibrary({
-//   title: 'Golden Poppies',
-//   status: 'read',
-//   author: 'LAILA IBRAHIM',
-//   imageUrl: 'https://m.media-amazon.com/images/I/51EiPPgS4rL._AA210_.jpg',
-//   pages: 245,
-// });
-
-render();
