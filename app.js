@@ -133,7 +133,7 @@ function validate() {
   const validAuthor = () => {
     if (bookAuthor.value.length > 0 && letterRegex.test(bookAuthor.value.trim()) !== true) {
       authorMsg.style.display = 'block';
-      authorMsg.textContent = 'invalid character detected!';
+      authorMsg.textContent = '*invalid character detected!';
       validAuthorName = false;
     }
   };
@@ -143,11 +143,11 @@ function validate() {
   const title = bookTitle.value;
   if (title === '') {
     titleMsg.style.display = 'block';
-    titleMsg.textContent = 'title cannot be empty';
+    titleMsg.textContent = '*title cannot be empty';
     return false;
   } if (title.length > 20) {
     titleMsg.style.display = 'block';
-    titleMsg.textContent = 'title cannot be more than 20 characters';
+    titleMsg.textContent = '*title cannot be more than 20 characters';
     return false;
   }
 
